@@ -10,11 +10,15 @@ function Home() {
   const dispatcher = useDispatch();
 
   let addtocart = async (item) => {
-    let cartitems = await axios.post("http://localhost:8000/cart", item, {
-      headers: {
-        Authorization: `${window.localStorage.getItem("token")}`,
-      },
-    });
+    let cartitems = await axios.post(
+      "https://amazonclone-8bxv.onrender.com/cart",
+      item,
+      {
+        headers: {
+          Authorization: `${window.localStorage.getItem("token")}`,
+        },
+      }
+    );
     console.log("working...");
   };
 
@@ -23,11 +27,14 @@ function Home() {
   }, []);
 
   const getData = async () => {
-    const user = await axios.get("http://localhost:8000/products", {
-      headers: {
-        Authorization: `${window.localStorage.getItem("token")}`,
-      },
-    });
+    const user = await axios.get(
+      "https://amazonclone-8bxv.onrender.com/products",
+      {
+        headers: {
+          Authorization: `${window.localStorage.getItem("token")}`,
+        },
+      }
+    );
     dispatcher(addproducts(user.data));
   };
 

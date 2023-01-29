@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
   const [enable, isEnable] = useState(false);
@@ -16,7 +16,10 @@ function Register() {
     },
     validate: () => {},
     onSubmit: async (values) => {
-      await axios.post("http://localhost:8000/register", values);
+      await axios.post(
+        "https://amazonclone-8bxv.onrender.com/register",
+        values
+      );
       isEnable(true);
       nav("/");
     },
@@ -25,7 +28,9 @@ function Register() {
     <div className="container">
       <div className="row">
         <div className="col-3">
-          <button className="btn btn-info btn-sm">Back</button>
+          <Link to="/" className="btn btn-info btn-sm">
+            Back
+          </Link>
         </div>
 
         <form onSubmit={formik.handleSubmit}>

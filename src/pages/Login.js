@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const [disable, setDisable] = useState(false);
   const nav = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -12,7 +13,11 @@ function Login() {
     },
     validate: () => {},
     onSubmit: async (values) => {
-      const login = await axios.post("http://localhost:8000/login", values);
+      setDisable(true);
+      const login = await axios.post(
+        "https://amazonclone-8bxv.onrender.com/login",
+        values
+      );
       window.localStorage.setItem("token", login.data.token);
       nav("/portal/home");
     },
@@ -54,6 +59,7 @@ function Login() {
       </form>
       <div>
         <Link
+          disabled={disable}
           to="/register"
           className="btn btn-info "
           style={{ margin: "5px", backgroundColor: "gray" }}

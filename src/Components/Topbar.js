@@ -9,7 +9,7 @@ function Topbar() {
     getName();
   }, []);
   const getName = async () => {
-    const user = await axios.get("http://localhost:8000/user", {
+    const user = await axios.get("https://amazonclone-8bxv.onrender.com/user", {
       headers: {
         Authorization: `${window.localStorage.getItem("token")}`,
       },

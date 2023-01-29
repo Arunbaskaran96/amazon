@@ -20,11 +20,14 @@ function Cart() {
   }, []);
 
   const getCart = async () => {
-    const cartItems = await axios.get("http://localhost:8000/usercart", {
-      headers: {
-        Authorization: `${window.localStorage.getItem("token")}`,
-      },
-    });
+    const cartItems = await axios.get(
+      "https://amazonclone-8bxv.onrender.com/usercart",
+      {
+        headers: {
+          Authorization: `${window.localStorage.getItem("token")}`,
+        },
+      }
+    );
     dispatcher(additem(cartItems.data.data));
     dispatcher(addTotal(cartItems.data.data));
   };
