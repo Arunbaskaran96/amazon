@@ -1,7 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Topbar() {
+  const [name, setName] = useState("");
+  const nav = useNavigate();
+  useEffect(() => {
+    getName();
+  }, []);
+  const getName = async () => {
+    const user = await axios.get("http://localhost:8000/user", {
+      headers: {
+        Authorization: `${window.localStorage.getItem("token")}`,
+      },
+    });
+    setName(user.data.name);
+  };
+  console.log(name);
+  const logout = () => {
+    window.localStorage.removeItem("token");
+    nav("/");
+  };
   return (
     <nav class="navbar navbar-expand-lg navbar-light navbar navbar-dark bg-dark">
       <div class="container-fluid">
@@ -51,6 +70,10 @@ function Topbar() {
           </ul>
         </div>
       </div>
+      <h6 style={{ color: "white" }}>{name}</h6>
+      <button onClick={logout} className="btn btn-danger btn-sm">
+        Log out
+      </button>
     </nav>
   );
 }

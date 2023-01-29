@@ -38,27 +38,31 @@ function Cart() {
       <div className="row">
         <div className="col-8">
           <div className="row" style={{ marginTop: "30px" }}>
-            {item.map((product) => {
-              return (
-                <div className="cart-container">
-                  <div>
-                    <img className="cart-img" src={product.products.img} />
+            {item.length > 0 ? (
+              item.map((product) => {
+                return (
+                  <div className="cart-container">
+                    <div>
+                      <img className="cart-img" src={product.products.img} />
+                    </div>
+                    <div>
+                      <h5>Name:{product.products.name}</h5>
+                      <h6>Price:{product.products.price}</h6>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => removeItem(product)}
+                        className="btn btn-danger btn-sm"
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
-                  <div>
-                    <h5>Name:{product.products.name}</h5>
-                    <h6>Price:{product.products.price}</h6>
-                  </div>
-                  <div>
-                    <button
-                      onClick={() => removeItem(product)}
-                      className="btn btn-danger btn-sm"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <h5>No items in cart</h5>
+            )}
           </div>
         </div>
         {/* <div className="col-4">

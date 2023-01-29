@@ -57,3 +57,17 @@
   height: 100vh;
   flex-direction: column;
 }
+
+/* .dropdown-row{
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+} */
+.dropdown{
+  background-color: white;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+/* .dropdowm:empty{
+  border: none;
+} */
