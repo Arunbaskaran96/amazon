@@ -51,6 +51,7 @@ function Login() {
           ></input>
           <br></br>
           <input
+            disabled={disable}
             className="form-control btn btn-primary btn-sm"
             type="submit"
             value="Submit"
@@ -59,7 +60,6 @@ function Login() {
       </form>
       <div>
         <Link
-          disabled={disable}
           to="/register"
           className="btn btn-info "
           style={{ margin: "5px", backgroundColor: "gray" }}
